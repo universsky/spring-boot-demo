@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+        "
+	default-autowire="byName">
+	<context:property-placeholder
+		location="classpath:spring-boot-placeholder.properties" />
+	<!-- 启动spring注解扫描 -->
+	<context:annotation-config />
+
+	<context:component-scan base-package="com.boot.provider" />
+
+	<dubbo:application name="wacFinanceLicai" owner="${dubbo.application.owner}" />
+	<dubbo:provider loadbalance="random" />
+
+	<dubbo:registry protocol="zookeeper" address="${dubbo.zk.servers}"
+		client="zkclient" group="${dubbo.zk.group}" />
+	<dubbo:protocol name="dubbo" port="${dubbo.service.provider.port}"
+		threadpool="cached" threads="${dubbo.service.provider.threads}"
+		accesslog="${dubbo.protocol.accesslog}" />
+
+	<!-- 声明需要暴露的服务接口 -->
+	<dubbo:provider>
+		<dubbo:service interface="com.boot.provider.HelloService"
+			ref="helloService" />
+	</dubbo:provider>
+
+</beans>
