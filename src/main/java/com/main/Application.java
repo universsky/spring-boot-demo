@@ -7,10 +7,12 @@
  *  
  */
 
-package com.boot;
+package com.main;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * 类名:Bootstrap 功能:TODO 日期: 2015年11月15日 下午6:00:40
@@ -22,8 +24,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 
 // it should under package com.xxx
-
-@SpringBootApplication
+// if not , we should set the @ComponentScan(basePackages = "com.xxx")
+@EnableAutoConfiguration
+@Configuration
+@ComponentScan(basePackages = "com.boot")
 public class Application {
     public static void main(String[] args) throws Exception {
         SpringApplication.run(Application.class, args);
