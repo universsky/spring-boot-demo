@@ -7,14 +7,10 @@
  *  
  */
 
-package main;
+package com.boot;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-
-import controller.HelloController;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * 类名:Bootstrap 功能:TODO 日期: 2015年11月15日 下午6:00:40
@@ -24,13 +20,12 @@ import controller.HelloController;
  * @since JDK 1.7
  * @see
  */
-@Configuration
-@ComponentScan
-@EnableAutoConfiguration
-public class Bootstrap {
 
+// it should under package com.xxx
+
+@SpringBootApplication
+public class Application {
     public static void main(String[] args) throws Exception {
-        SpringApplication.run(HelloController.class, args);
+        SpringApplication.run(Application.class, args);
     }
-
 }

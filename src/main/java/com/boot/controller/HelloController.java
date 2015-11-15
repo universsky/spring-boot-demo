@@ -1,9 +1,8 @@
 
-package controller;
+package com.boot.controller;
 
 import java.util.Date;
 
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,8 +16,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @since JDK 1.7
  * @see
  */
+
+// let's say, it is under package com.xxx.controller
+
 @Controller
-@EnableAutoConfiguration
 public class HelloController {
     @RequestMapping("/")
     @ResponseBody
@@ -29,7 +30,6 @@ public class HelloController {
     @RequestMapping("/say")
     @ResponseBody
     String say() {
-
         return "I am Spring Boot! Now time is: " + new Date();
     }
 
